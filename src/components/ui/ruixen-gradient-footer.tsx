@@ -81,7 +81,7 @@ export interface RuixenGradientFooterProps {
 export function RuixenGradientFooter({
   children,
   gradientHeight = "65vh",
-  minReveal = 0.045,
+  minReveal = 0,
   bars = 9,
   blur = 15,
   peak = 0.98,
@@ -91,9 +91,27 @@ export function RuixenGradientFooter({
   style,
 }: RuixenGradientFooterProps) {
   const uid = useId().replace(/:/g, "");
+  const footerRef = useRef<HTMLElement>(null);
   const bandRef = useRef<HTMLDivElement>(null);
+  const [isFooterInView, setIsFooterInView] = useState(false);
   // minReveal = a flat strip on the floor, 1 = risen to full height.
-  const [progress, setProgress] = useState(minReveal);
+  const [progress, setProgress] = useState(0);
+
+  // IntersectionObserver to guarantee zero glow visibility outside the footer
+  useEffect(() => {
+    const footerEl = footerRef.current;
+    if (!footerEl) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsFooterInView(entry.isIntersecting);
+      },
+      { threshold: 0, rootMargin: "80px" }
+    );
+
+    observer.observe(footerEl);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const el = bandRef.current;
@@ -134,13 +152,13 @@ export function RuixenGradientFooter({
     // The glow is pinned to the viewport, so the footer reserves the same
     // height beneath its content for the glow to land in.
     <footer
+      ref={footerRef}
       className={`relative overflow-hidden ${className || ""}`}
       style={{ paddingBottom: gradientHeight, ...style }}
     >
       <div className="relative z-10">{children}</div>
 
-      {/* ponytail: fixed to the viewport — a transformed/filtered ancestor
-          would capture it. Give the footer a plain containing block. */}
+      {/* ponytail: fixed to the viewport — only visible when footer is in view */}
       <div
         ref={bandRef}
         aria-hidden
@@ -153,7 +171,10 @@ export function RuixenGradientFooter({
           pointerEvents: "none",
           transformOrigin: "bottom",
           transform: `scaleY(${progress})`,
-          willChange: "transform",
+          opacity: isFooterInView && progress > 0.005 ? 1 : 0,
+          visibility: isFooterInView && progress > 0.005 ? "visible" : "hidden",
+          transition: "opacity 0.25s ease, visibility 0.25s ease",
+          willChange: "transform, opacity",
           zIndex: 0,
         }}
       >

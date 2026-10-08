@@ -39,7 +39,7 @@ export const Footer: React.FC = () => {
   return (
     <RuixenGradientFooter
       gradientHeight="48vh"
-      minReveal={0.03}
+      minReveal={0}
       className="bg-[#050505] text-white border-t border-white/10 selection:bg-white selection:text-black"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-16 sm:pt-20 pb-8">

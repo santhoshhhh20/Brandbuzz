@@ -1,0 +1,376 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    --primary: 0 0% 7%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 97%;
+    --secondary-foreground: 0 0% 7%;
+    --muted: 0 0% 97%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 97%;
+    --accent-foreground: 0 0% 7%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 15%;
+    --radius: 0.5rem;
+    color-scheme: light;
+  }
+  
+  html {
+    scroll-behavior: auto !important;
+    background-color: #ffffff;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    background-color: #ffffff;
+    color: #111111;
+    overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+  }
+
+  ::selection {
+    background-color: #111111;
+    color: #ffffff;
+  }
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #e4e4e7;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* Editorial line underline animation */
+.editorial-link {
+  position: relative;
+  display: inline-block;
+}
+.editorial-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transform-origin: bottom right;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.editorial-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Subtle clean card hover */
+.clean-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+.clean-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.05);
+  border-color: #111111;
+}
+
+/* -------------------------------------------------------------
+   Parallax Image Layers (Osmo / 21st.dev)
+------------------------------------------------------------- */
+.parallax {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.parallax__header {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.parallax__visuals {
+  object-fit: cover;
+  width: 100%;
+  height: 120%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.parallax__layers {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.parallax__layer-img {
+  pointer-events: none;
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 117.5%;
+  position: absolute;
+  top: -17.5%;
+  left: 0;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.parallax__layer-title {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.parallax__title {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  font-family: 'Syne', 'Inter', -apple-system, sans-serif;
+  font-size: clamp(2rem, 9.2vw, 11rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  color: #ffffff;
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+}
+
+.parallax__fade {
+  z-index: 30;
+  width: 100%;
+  height: 25%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, #000000);
+}
+
+.parallax__black-line-overflow {
+  z-index: 20;
+  background-color: #000000;
+  width: 100%;
+  height: 4px;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.parallax__content {
+  padding: 6rem 2rem;
+  justify-content: center;
+  align-items: center;
+  min-height: 80svh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: #000000;
+  color: #ffffff;
+}
+
+.osmo-icon-svg {
+  width: 6rem;
+  height: 6rem;
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.osmo-credits {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.875rem;
+  color: #71717a;
+  background-color: #000000;
+}
+
+.osmo-credits__p {
+  margin: 0;
+}
+
+.osmo-credits__p-a {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   PRODUCTION RESPONSIVE SYSTEM & DEVICE MEDIA QUERIES
+   Optimized for:
+   1. iPhone (SE, 12, 13, 14, 15, 16 Pro/Max + Dynamic Island/Notch + Safari)
+   2. Android (Samsung Galaxy, Google Pixel, OnePlus + Chrome Mobile)
+   3. Tablet & Foldables (iPad Mini, iPad Air, iPad Pro, Galaxy Tab, Surface)
+   4. Desktop & Retina Workstations (MacBook, 1080p, 1440p, 4K displays)
+   ========================================================================== */
+
+/* 1. Universal Viewport & Safe-Area Inset Support */
+:root {
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+}
+
+.pt-safe {
+  padding-top: max(1rem, env(safe-area-inset-top, 0px));
+}
+
+.pb-safe {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+}
+
+.px-safe {
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+
+/* Global mobile overflow prevention & typography rendering */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* iOS Safari auto-zoom prevention: inputs must be at least 16px on mobile */
+@media screen and (max-width: 767px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* 2. Compact Smartphones (iPhone SE, smaller Android devices: <= 430px) */
+@media screen and (max-width: 430px) {
+  .fluid-hero-headline {
+    font-size: clamp(2.25rem, 11vw, 3.5rem) !important;
+    line-height: 0.95 !important;
+  }
+
+  .fluid-founder-headline {
+    font-size: clamp(2.4rem, 12.5vw, 4rem) !important;
+    line-height: 0.9 !important;
+  }
+
+  .mobile-touch-target {
+    min-height: 48px !important;
+  }
+}
+
+/* 3. Mobile Phones (iPhone & Android: <= 639px) */
+@media screen and (max-width: 639px) {
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+
+  /* Prevent tilt overflow on narrow mobile screens */
+  .no-mobile-tilt {
+    transform: none !important;
+  }
+
+  /* Compact padding for cards on mobile */
+  .mobile-card-p {
+    padding: 1.25rem !important;
+  }
+}
+
+/* 4. Tablets & Foldables (iPad, Android Tablets: 640px to 1023px) */
+@media screen and (min-width: 640px) and (max-width: 1023px) {
+  .tablet-grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .tablet-fluid-text {
+    font-size: clamp(1.125rem, 2vw, 1.35rem) !important;
+  }
+}
+
+/* 5. Desktop Displays (1024px and above) */
+@media screen and (min-width: 1024px) {
+  .desktop-grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+/* 6. High DPI / Retina Displays (Apple Retina, AMOLED, 2K/4K) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* 7. Landscape Mobile Support (e.g. iPhone held horizontally) */
+@media screen and (max-height: 520px) and (orientation: landscape) {
+  .landscape-compact-py {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+}
+
+/* 8. Reduced Motion Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

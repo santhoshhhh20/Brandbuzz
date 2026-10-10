@@ -147,14 +147,21 @@ export const Navbar: React.FC = () => {
       >
         {/* Floating Rounded Pill with High-Contrast Multi-Layer Shadow & Border */}
         <div className="flex items-center justify-between px-4 xs:px-6 sm:px-8 py-2.5 sm:py-3.5 bg-white/95 backdrop-blur-md rounded-full shadow-[0_16px_40px_rgba(0,0,0,0.12),0_4px_12px_rgba(0,0,0,0.06),0_0_0_1px_rgba(0,0,0,0.05)] border border-neutral-200/90 w-full max-w-4xl relative z-10 pointer-events-auto transition-all duration-300">
-          {/* Brand Name with Same Font in Left Corner */}
+          {/* Brand Name & Logo in Left Corner */}
           <div className="flex items-center">
             <a
               href="#home"
               onClick={(e) => handleLinkClick(e, '#home')}
-              className="group flex items-center gap-1.5 text-black select-none"
+              className="group flex items-center gap-2.5 text-black select-none"
             >
-              <span className="font-display text-lg sm:text-xl font-bold tracking-tight uppercase flex items-center gap-1.5 text-black">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-neutral-200/90 shadow-sm shrink-0 bg-white flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                <img
+                  src="/logo.jpg"
+                  alt="Brandbuzz Logo"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="font-display text-base sm:text-lg font-bold tracking-tight uppercase flex items-center gap-1.5 text-black">
                 BRANDBUZZ
                 <span className="w-1.5 h-1.5 rounded-full bg-black inline-block group-hover:scale-125 transition-transform" />
               </span>

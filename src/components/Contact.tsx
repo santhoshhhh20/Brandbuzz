@@ -141,6 +141,16 @@ ${formData.message || ''}`;
           <span>START A PROJECT</span>
         </div>
 
+        {/* Brand Badge with Circular Logo */}
+        <div className="inline-flex items-center gap-3.5 px-4 py-2 rounded-full bg-neutral-900/90 border border-neutral-700/80 mb-8 shadow-xl">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full overflow-hidden border border-neutral-400/50 bg-white shrink-0 shadow-md">
+            <img src="/logo.jpg" alt="Brandbuzz Logo" className="w-full h-full object-cover" />
+          </div>
+          <span className="text-xs font-mono tracking-widest text-white uppercase font-semibold">
+            BRANDBUZZ OFFICIAL
+          </span>
+        </div>
+
         {/* Section Headline */}
         <div className="max-w-3xl mb-16">
           <h2 className="font-display text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-white mb-4 leading-none">
@@ -203,9 +213,14 @@ ${formData.message || ''}`;
             </div>
 
             {/* Response Pledge Box */}
-            <div className="p-6 rounded-2xl bg-white text-black border border-neutral-200 text-xs font-mono shadow-[0_10px_30px_rgba(0,0,0,0.1)] leading-relaxed">
-              <span className="text-black font-bold block mb-1 uppercase tracking-wider">24-HOUR RESPONSE GUARANTEE</span>
-              <span className="text-neutral-600">Every inquiry is reviewed directly by Tariq Anwar and our core creative team.</span>
+            <div className="p-6 rounded-2xl bg-white text-black border border-neutral-200 text-xs font-mono shadow-[0_10px_30px_rgba(0,0,0,0.1)] leading-relaxed flex items-start gap-4">
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-neutral-200 bg-white shrink-0 shadow-sm">
+                <img src="/logo.jpg" alt="Brandbuzz" className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <span className="text-black font-bold block mb-1 uppercase tracking-wider">24-HOUR RESPONSE GUARANTEE</span>
+                <span className="text-neutral-600">Every inquiry is reviewed directly by Tariq Anwar and our core creative team.</span>
+              </div>
             </div>
           </div>
 
